@@ -1,5 +1,5 @@
-from crypt import methods
-from distutils.log import debug
+#from crypt import methods
+#from distutils.log import debug
 from flask import Flask, render_template, redirect, request, flash
 from flask_mail import Mail, Message
 from config import email, senha
@@ -21,8 +21,8 @@ mail = Mail(app)
 
 class Contato:
     def __init__(self, nome, email, mensagem):
-        self.nome = nome,
-        self.email = email,
+        self.nome = nome
+        self.email = email
         self.mensagem = mensagem
 
 @app.route('/')
@@ -39,8 +39,8 @@ def send():
         )
         msg = Message(
             subject= f'{formContato.nome} te enviou uma mensagem no portifólio.',
-            sender= app.config.ger("MAIL_USERNAME"),
-            recipients= ['arlindojr25@hotmail.com', 'arlindojrti@gmail.com', app.config.ger("MAIL_USERNAME")],
+            sender= app.config.get("MAIL_USERNAME"),
+            recipients= ['arlindojr25@hotmail.com', 'arlindojrti@gmail.com', app.config.get("MAIL_USERNAME")],
             body= f'''
             
             {formContato.nome} com o e-mail {formContato.email}, te enviou a seguinte mensagem:
